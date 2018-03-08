@@ -1,27 +1,25 @@
 import re, time
+from collections import Counter
+
+def word_count(f):
+    word_dict = Counter()
+    punc = ',.!?-*&^%$#@'
+    #  with will automaticlly close your file
+    with open(f) as in_file:
+        # iterate over each line
+        for line in in_file:
+            # pass each stripped word from the line to the Counter dict
+            word_dict.update(x.rstrip(punc).lower() for x in line.split())
+    return word_dict
 
 def counting_word(file_name):
     count = 0
+    punc = ',.!?-*&^%$#@'
     with open(file_name) as file:
         for line in file:
             print list(filter(lambda x: x != '' and x != '\n', re.split("\W+", line)))
-            count = count + len(list(filter(lambda x: x != '' and x != '\n', re.split("\W+", line))))
+            count = count + len(list(filter(lambda x: x != '' and x != '\n',re.split("\W+", line))))
     return count
-
-def counting_word_isallnum(file_name):
-    count=0
-    with open(file_name)  as file:
-        for line in file:
-            line.isalnum()
-            pass
-
-
-def word_count(file_name):
-    dict={}
-
-    with open(file_name) as file:
-        for line in file:
-            words = list(filter(lambda x: x != '' and x != '\n', re.split("\W+", line)))
 
 if __name__ == "__main__":
 
