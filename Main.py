@@ -1,4 +1,4 @@
-import re, time
+import time
 from collections import Counter
 
 def word_count(f):
@@ -17,26 +17,41 @@ def counting_word(file_name):
     punc = ',.!?-*&^%$#@'
     with open(file_name) as file:
         for line in file:
-            print list(filter(lambda x: x != '' and x != '\n', re.split("\W+", line)))
-            count = count + len(list(filter(lambda x: x != '' and x != '\n',re.split("\W+", line))))
+            line = map(lambda x: x.rstrip(punc).lower(),line.split())
+            count = count + len(list(filter(lambda x: x != '' and x != '\n',line)))
     return count
 
 if __name__ == "__main__":
-
+    print "----------COUNT WORDS-----------"
+    start_time = time.time()
+    print "Sherlok Holmes: "+str(counting_word("big.txt"))
+    elapsed_time = time.time() - start_time
+    print "Elapsed time: "+str(elapsed_time)
 
     start_time = time.time()
-    print counting_word("simple.txt")
+    print "\nEl Quijote: " + str(counting_word("pg2000.txt"))
     elapsed_time = time.time() - start_time
-    print "time: "+str(elapsed_time)
-
-    """  
+    print "Elapsed time: " + str(elapsed_time)
+    #PG10.txt
     start_time = time.time()
-    print counting_word("pg10.txt")
+    print "\nThe bible: "+str(counting_word("pg10.txt"))
     elapsed_time = time.time() - start_time
-    print "time: " + str(elapsed_time)
+    print "Elapsed time: " + str(elapsed_time)
+    print "-------------------------------"
+
+    print "----------WORD COUNT----------"
+    start_time = time.time()
+    print "Sherlok Holmes: \n" + str(word_count("big.txt"))
+    elapsed_time = time.time() - start_time
+    print "Elapsed time: " + str(elapsed_time)
 
     start_time = time.time()
-    print counting_word("pg2000.txt")
+    print "\nEl Quijote: \n" + str(word_count("pg2000.txt"))
     elapsed_time = time.time() - start_time
-    print "time: " + str(elapsed_time)
-    """
+    print "Elapsed time: " + str(elapsed_time)
+    # PG10.txt
+    start_time = time.time()
+    print "\nThe bible: \n" + str(word_count("pg10.txt"))
+    elapsed_time = time.time() - start_time
+    print "Elapsed time: " + str(elapsed_time)
+    print "------------------------------"
