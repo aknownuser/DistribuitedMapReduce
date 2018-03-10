@@ -10,19 +10,25 @@ class Map(object):
     _tell = ['map']
     _ref = ['map']
 
-    def map(self, i, reducer):
+
+    def map(self, i, reducer, reduce_mode):
         self.reducer = reducer
+        mapped_words = []
+        punc = ',.!?-*&^%$#@'
         file = 'part'+str(i)
         print file
-
         # Assuming the file already exists
-        f = open(file)
-        lines = f.readlines()
-        print lines
-        f.close()
+        with open(file) as f:
+            for line in f:
+                mapped_words = mapped_words + map(lambda x: x.rstrip(punc).lower(), line.split())
+        print mapped_words
 
         # Send the result to the reducer
-        self.reducer.sayHello()
+        if reduce_mode == "counting_words":
+            self.reducer.counting_words(mapped_words)
+        if reduce_mode == "word_count":
+            self.reducer.word_count(mapped_words)
+
 
 
 if __name__ == "__main__":
