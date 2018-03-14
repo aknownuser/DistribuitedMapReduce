@@ -80,7 +80,7 @@ if __name__ == "__main__":
     address = 'http://127.0.0.1:600'+str(sys.argv[1])
     host = create_host(address)
 
-    registry = host.lookup_url('http://127.0.0.1:6000/registry', 'Registry', 'Registry')
+    registry = host.lookup_url('http://127.0.0.1:5999/registry', 'Registry', 'Registry')
 
 
     name = 'worker'+str(sys.argv[1])

@@ -45,10 +45,10 @@ class Registry(object):
 
 if __name__ == "__main__":
     set_context()
-    host = create_host('http://127.0.0.1:6000/')
+    host = create_host('http://127.0.0.1:5999/')
 
     registry = host.spawn('registry', Registry)
 
-    print 'host listening at port 6000'
+    print 'host listening at port 5999'
 
     serve_forever()

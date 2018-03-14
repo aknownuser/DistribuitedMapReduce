@@ -11,20 +11,24 @@ if __name__ == "__main__":
     set_context()
     host = create_host('http://127.0.0.1:12345')
 
-    registry = host.lookup_url('http://127.0.0.1:6000/registry', 'Registry', 'Registry')
+    registry = host.lookup_url('http://127.0.0.1:5999/registry', 'Registry', 'Registry')
 
     reducer_host = registry.lookup('reducer')
     reducer = reducer_host.spawn('reducer', 'Reducer/Reduce')
 
+
     mappers = registry.get_all()
-
-    i = 1
+    worker = []
+    i = 0
     for mapper in mappers:
-        worker = mapper.spawn('mapper', 'Mapper/Map')
-        reducer.set_mappers_num(i)
-        worker.mapI(i, reducer, fmr.counting_words)
+        worker.append(mapper.spawn('mapper', 'Mapper/Map'))
         i = i+1
-
+    reducer.set_mappers_num(i)
+    print i
+    i = 0
+    for wor in worker:
+        wor.mapI(i+1, reducer, fmr.counting_words)
+        i = i + 1
 
 
     shutdown()
