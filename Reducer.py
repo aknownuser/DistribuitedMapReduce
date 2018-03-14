@@ -2,32 +2,29 @@
 Reducer to be binded to the registry and later used for the Reducing stage
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
-import sys
 from collections import Counter
 from pyactor.context import set_context, create_host, serve_forever, sleep, shutdown
+import functionsMapRed as fmr
+
 
 class Reduce(object):
-    _tell = ['sayHello', 'word_count', 'counting_words', 'set_mappers_num']
+    _tell = ['sayHello', 'word_count', 'counting_words', 'set_mappers_num','reduce']
 
     def __init__(self):
-        self.mappers=0
+        self.mappers = 0
+        self.data = Counter()
 
     def set_mappers_num(self, mappers_num):
         self.mappers = mappers_num
 
-    def reduce(self, func, data, init):
-        if data.empty():
-            return init
-        else:
-            func(data.pop(), self.reduce(func, data, init))
+    def reduce(self, list, func):
+        self.data = func(self.data, list)
+        self.mappers -=1
 
-    def word_count(self, data):
-        word_dict = Counter()
-        word_dict.update(data)
-        print word_dict
+        if self.mappers == 0:
+            print self.data['total']
 
-    def counting_words(self, data):
-        print len(filter(lambda x: x != '' and x != '\n',data))
+
 
 if __name__ == "__main__":
 
