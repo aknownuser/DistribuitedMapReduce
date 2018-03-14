@@ -23,8 +23,8 @@ class Reduce(object):
         if self.mappers == 0:
             print self.data
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     set_context()
     host = create_host('http://127.0.0.1:6100')
 
