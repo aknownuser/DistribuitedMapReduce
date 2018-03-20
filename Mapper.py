@@ -14,11 +14,11 @@ class Map(object):
     _tell = ['map']
     _ref = ['map']
 
-    def map(self, i, reducer, function, map_func):
+    def map(self, i, reducer, map_func, red_func):
 
         file = 'part' + str(i)
         mapped_words = map_func(file)
-        reducer.reduce(mapped_words, function)
+        reducer.reduce(mapped_words, red_func)
 
 
 if __name__ == "__main__":

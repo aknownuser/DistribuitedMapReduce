@@ -1,5 +1,6 @@
 """
 Registry that contains the Workers and Reducer's data, to be contacted from outer actors
+Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 
 from pyactor.context import set_context, create_host, serve_forever

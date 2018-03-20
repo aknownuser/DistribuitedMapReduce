@@ -21,7 +21,7 @@ class Reduce(object):
         self.data = func(self.data, list)
         self.mappers -=1
         if self.mappers == 0:
-            print self.data
+            print fmr.outputFormat(self.data, func)
 
 
 if __name__ == "__main__":
