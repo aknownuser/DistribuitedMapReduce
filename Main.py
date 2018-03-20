@@ -11,7 +11,6 @@ import os, sys
 def split_file(file_name, num):
 
     lines = open(file_name).read().split('\n')
-    print len(lines)
     file_len = len(lines)/num
     i = 1
     for line_num in range(0, len(lines), file_len):
@@ -46,6 +45,7 @@ if __name__ == "__main__":
 
     split_file(sys.argv[1], i)
     i = 0
+    reducer.set_init_time()
     for wor in worker:
         wor.map(i+1, reducer, fmr.get_file_words, fmr.word_count)
         i = i + 1

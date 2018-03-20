@@ -3,7 +3,7 @@ Common definitions for functions
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 from collections import Counter
-
+import unicodedata
 
 def get_file_words(file):
     punc = ',.!?-*&^%$#@[]()'
@@ -11,11 +11,15 @@ def get_file_words(file):
     # Assuming the file already exists
     with open(file) as f:
         for line in f:
-            mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split()))
+            mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split()))
 
-    print mapped_words
     return mapped_words
 
+
+def remove_accent_mark(s):
+    s = s.decode('utf-8')
+    result = ''.join((c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn'))
+    return result.encode('utf-8')
 
 def word_count(data, list):
 
