@@ -5,20 +5,28 @@ Authors: Amanda Gomez Gomez, Oussama El Azizi
 
 from pyactor.context import set_context, create_host,shutdown
 import functionsMapRed as fmr
-import os
+import os, sys
 
 
 def split_file(file_name, num):
-    size = os.stat(file_name).st_size
-    chunk_size = size / num
-    with open(file_name) as fl:
-        for x in range(1,(num+1)):
-            lines = fl.readlines(chunk_size)
-            with open("part"+str(x),'w') as part:
-                part.writelines(lines)
+
+    lines = open(file_name).read().split('\n')
+    file_len = len(lines)/num
+    i = 1
+    for line_num in range(0, len(lines), file_len):
+        data = lines[line_num:line_num+file_len]
+        output = open('part'+str(i), 'w')
+        output.write('\n'.join(data))
+        output.close()
+        i = i + 1
 
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print "Error, you should specify 1 parameter with the name of the file to process. Usage 'python Main.py file'"
+        quit()
+
+
     set_context()
     host = create_host('http://192.168.1.43:12345/')
 
@@ -34,10 +42,12 @@ if __name__ == "__main__":
         worker.append(mapper.spawn('mapper', 'Mapper/Map'))
         i = i+1
     reducer.set_mappers_num(i)
-    print i
+
+    split_file(sys.argv[1], i)
     i = 0
+    reducer.set_init_time()
     for wor in worker:
-        wor.map(i+1, reducer, fmr.word_count, fmr.get_file_words)
+        wor.map(i+1, reducer, fmr.get_file_words, fmr.word_count)
         i = i + 1
 
     shutdown()
