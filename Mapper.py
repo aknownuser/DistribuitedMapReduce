@@ -27,10 +27,10 @@ if __name__ == "__main__":
         quit()
 
     set_context()
-    address = 'http://127.0.0.1:600'+str(sys.argv[1])
+    address = 'http://192.168.1.43:600'+str(sys.argv[1])+'/'
     host = create_host(address)
 
-    registry = host.lookup_url('http://127.0.0.1:5999/registry', 'Registry', 'Registry')
+    registry = host.lookup_url('http://192.168.1.39:5999/registry', 'Registry', 'Registry')
     name = 'worker'+str(sys.argv[1])
     registry.bind(name, host)
     serve_forever()

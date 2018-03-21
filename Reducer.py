@@ -26,9 +26,9 @@ class Reduce(object):
 
 if __name__ == "__main__":
     set_context()
-    host = create_host('http://127.0.0.1:6100')
+    host = create_host('http://192.168.1.43:6100/')
 
-    registry = host.lookup_url('http://127.0.0.1:5999/registry', 'Registry', 'Registry')
+    registry = host.lookup_url('http://192.168.1.39:5999/registry', 'Registry', 'Registry')
     registry.bind('reducer', host)
 
 
