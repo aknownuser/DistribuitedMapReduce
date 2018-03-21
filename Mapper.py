@@ -22,15 +22,16 @@ class Map(object):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print "Incorrect call, specify one argument, corresponding to the worker number."
+    if len(sys.argv) != 3:
+        print "Incorrect call, specify one argument, corresponding to the worker number and the IP for registry."
         quit()
 
     set_context()
     address = 'http://127.0.0.1:600'+str(sys.argv[1])
     host = create_host(address)
 
-    registry = host.lookup_url('http://127.0.0.1:5999/registry', 'Registry', 'Registry')
+    registry_address = 'http://'+sys.argv[2]+':5999/registry'
+    registry = host.lookup_url(registry_address, 'Registry', 'Registry')
     name = 'worker'+str(sys.argv[1])
     registry.bind(name, host)
     serve_forever()

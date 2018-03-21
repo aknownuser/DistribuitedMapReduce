@@ -4,6 +4,7 @@ Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 
 from pyactor.context import set_context, create_host, serve_forever
+import sys
 
 class NotFound(Exception):
     pass
@@ -46,7 +47,8 @@ class Registry(object):
 
 if __name__ == "__main__":
     set_context()
-    host = create_host('http://127.0.0.1:5999/')
+    address = 'http://'+sys.argv[1]+':5999/'
+    host = create_host(address)
 
     registry = host.spawn('registry', Registry)
 
