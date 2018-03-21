@@ -17,7 +17,8 @@ class Map(object):
     def map(self, i, reducer, map_func, red_func):
 
         file = 'part' + str(i)
-        mapped_words = map_func(file, self.http_server)
+        mapped_words = map_func(file, self.http_server, reducer)
+        print "Mapper finished"
         reducer.reduce(mapped_words, red_func)
 
     def set_http_server(self, addr):

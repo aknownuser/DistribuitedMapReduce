@@ -3,15 +3,21 @@ Common definitions for functions
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 from collections import Counter
-import unicodedata, urllib2
+import unicodedata, urllib, time
 
-def get_file_words(file, http_server):
+def get_file_words(file, http_server, reducer):
     punc = ',.!?-*&^%$#@[]()'
     mapped_words=[]
     # Assuming the file already exists
-    contents = urllib2.urlopen(http_server+'/'+file)
-    for line in contents:
-        mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split()))
+    #contents = urllib2.urlopen(http_server+'/'+file)
+
+    urllib.urlretrieve(http_server+'/'+file, file)
+
+    #print contents
+    #reducer.set_init_time
+    with open(file) as contents:
+        for line in contents:
+            mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split()))
 
     return mapped_words
 
@@ -24,11 +30,13 @@ def remove_accent_mark(s):
 def word_count(data, list):
 
     data.update(list)
+    print '.'
     return data
 
 
 def counting_words(data, list):
     data['total'] = data['total']+len(list)
+    print '.'
     return data
 
 
