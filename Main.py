@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
 
     set_context()
-    address = 'http://' + sys.argv[2] + ':12345'
+    address = 'http://' + sys.argv[3] + ':12345'
     host = create_host(address)
 
     registry_address = 'http://' + sys.argv[2] + ':5999/registry'
@@ -42,6 +42,7 @@ if __name__ == "__main__":
     i = 0
     for mapper in mappers:
         worker.append(mapper.spawn('mapper', 'Mapper/Map'))
+        worker[i].set_http_server('http://'+sys.argv[3])
         i = i+1
     reducer.set_mappers_num(i)
 

@@ -3,15 +3,15 @@ Common definitions for functions
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 from collections import Counter
-import unicodedata
+import unicodedata, urllib2
 
-def get_file_words(file):
+def get_file_words(file, http_server):
     punc = ',.!?-*&^%$#@[]()'
     mapped_words=[]
     # Assuming the file already exists
-    with open(file) as f:
-        for line in f:
-            mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split()))
+    contents = urllib2.urlopen(http_server+'/'+file)
+    for line in contents:
+        mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split()))
 
     return mapped_words
 

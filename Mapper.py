@@ -11,15 +11,17 @@ import functionsMapRed as fmr
 
 
 class Map(object):
-    _tell = ['map']
+    _tell = ['map', 'set_http_server']
     _ref = ['map']
 
     def map(self, i, reducer, map_func, red_func):
 
         file = 'part' + str(i)
-        mapped_words = map_func(file)
+        mapped_words = map_func(file, self.http_server)
         reducer.reduce(mapped_words, red_func)
 
+    def set_http_server(self, addr):
+        self.http_server = addr+':8000'
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
