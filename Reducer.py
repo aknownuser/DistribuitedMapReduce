@@ -36,7 +36,7 @@ if __name__ == "__main__":
         quit()
 
     set_context()
-    address = 'http://' + sys.argv[2] + ':600' + str(sys.argv[1])
+    address = 'http://' + sys.argv[2] + ':6100'
     host = create_host(address)
 
     registry_address = 'http://' + sys.argv[1] + ':5999/registry'
