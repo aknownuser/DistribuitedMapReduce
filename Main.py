@@ -22,15 +22,16 @@ def split_file(file_name, num):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print "Error, you should specify 1 parameter with the name of the file to process. Usage 'python Main.py file'"
+    if len(sys.argv) != 3:
+        print "Error, you should specify 2 parameters: the name of the file to process and the registry's IP. Usage 'python Main.py file'"
         quit()
 
 
     set_context()
-    host = create_host('http://192.168.1.43:12345/')
+    host = create_host('http://127.0.0.1:12345')
 
-    registry = host.lookup_url('http://192.168.1.39:5999/registry', 'Registry', 'Registry')
+    registry_address = 'http://' + sys.argv[2] + ':5999/registry'
+    registry = host.lookup_url(registry_address, 'Registry', 'Registry')
 
     reducer_host = registry.lookup('reducer')
     reducer = reducer_host.spawn('reducer', 'Reducer/Reduce')
