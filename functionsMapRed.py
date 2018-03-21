@@ -3,16 +3,18 @@ Common definitions for functions
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 from collections import Counter
-import unicodedata, urllib, time
+import unicodedata, urllib2, time
 
 def get_file_words(file, http_server, reducer):
     punc = ',.!?-*&^%$#@[]()'
     mapped_words=[]
     # Assuming the file already exists
-    #contents = urllib2.urlopen(http_server+'/'+file)
+    contents = urllib2.urlopen(http_server+'/'+file)
 
-    urllib.urlretrieve(http_server+'/'+file, file)
-
+    with open(file,'w') as copy_file:
+        for elem in contents:
+            copy_file.write(elem)
+    time.sleep(2)
     #print contents
     #reducer.set_init_time
     with open(file) as contents:

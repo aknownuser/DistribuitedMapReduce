@@ -10,13 +10,15 @@ import os, sys
 
 def split_file(file_name, num):
 
-    lines = open(file_name).read().split('\n')
+    lines = open(file_name).readlines()
     file_len = len(lines)/num
     i = 1
     for line_num in range(0, len(lines), file_len):
+        if i > num: break
         data = lines[line_num:line_num+file_len]
         output = open('part'+str(i), 'w')
-        output.write('\n'.join(data))
+        output.writelines(data)
+        del data
         output.close()
         i = i + 1
 
