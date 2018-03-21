@@ -31,12 +31,13 @@ class Reduce(object):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print "Incorrect call, specify one argument, corresponding to the IP for registry."
+    if len(sys.argv) != 3:
+        print "Incorrect call, specify two arguments, corresponding to the IP for registry and the local IP."
         quit()
 
     set_context()
-    host = create_host('http://127.0.0.1:6100')
+    address = 'http://' + sys.argv[2] + ':6100'
+    host = create_host(address)
 
     registry_address = 'http://' + sys.argv[1] + ':5999/registry'
     registry = host.lookup_url(registry_address, 'Registry', 'Registry')

@@ -22,12 +22,12 @@ class Map(object):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print "Incorrect call, specify one argument, corresponding to the worker number and the IP for registry."
+    if len(sys.argv) != 4:
+        print "Incorrect call, specify three arguments, corresponding to the worker number, the IP for registry, and the local IP."
         quit()
 
     set_context()
-    address = 'http://127.0.0.1:600'+str(sys.argv[1])
+    address = 'http://' + sys.argv[3] + ':600'+str(sys.argv[1])
     host = create_host(address)
 
     registry_address = 'http://'+sys.argv[2]+':5999/registry'
