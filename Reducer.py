@@ -20,7 +20,8 @@ class Reduce(object):
         self.mappers = mappers_num
 
     def set_init_time(self):
-        self.init_time = time.time()
+        if self.init_time == 0:
+            self.init_time = time.time()
 
     def reduce(self, list, func):
         self.data = func(self.data, list)

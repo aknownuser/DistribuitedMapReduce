@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     split_file(sys.argv[1], i)
     i = 0
-    reducer.set_init_time()
+
     for wor in worker:
         wor.map(i+1, reducer, fmr.get_file_words, fmr.word_count)
         i = i + 1
