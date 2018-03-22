@@ -10,9 +10,9 @@ def get_file_words(file, http_server, reducer):
     mapped_words=[]
     # Assuming the file already exists
     contents = urllib2.urlopen(http_server+'/'+file)
-
+    lines = contents.read()
     with open(file,'w') as copy_file:
-        for elem in contents:
+        for elem in lines:
             copy_file.write(elem)
     time.sleep(2)
     #print contents
