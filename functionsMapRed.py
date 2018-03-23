@@ -11,18 +11,13 @@ def get_file_words(file, http_server, reducer):
     # Assuming the file already exists
     print "Downloading "+file
     #contents = urllib2.urlopen(http_server+'/parted/'+file)
-    contents,_ = urllib.urlretrieve(http_server+'/parted/'+file, filename=file)
-    lines = contents.read()
-    with open(file,'w') as copy_file:
-        for elem in lines:
-            copy_file.write(elem)
-    time.sleep(2)
+    file_name,_ = urllib.urlretrieve(http_server+'/parted/'+file, filename=file)
     print "Download done"
     #print contents
-    #reducer.set_init_time.
+    reducer.set_init_time()
     print "Processing Starts"
-    with open(file) as data:
-        for line in data:
+    with open(file_name) as contents:
+        for line in contents:
             #mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split()))
             mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split()))
     print "Processing Done"
