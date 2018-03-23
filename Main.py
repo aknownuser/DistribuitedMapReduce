@@ -10,7 +10,7 @@ def remove_accent_mark(s):
 
 def word_count(f):
     word_dict = Counter()
-    punc = ',.!?-*&^%$#@[]'
+    punc = ',.!?-*&^%$#@[]()'
     #  with will automatically close your file
     with open(f) as in_file:
         # iterate over each line
@@ -22,7 +22,7 @@ def word_count(f):
 
 def counting_word(file_name):
     count = 0
-    punc = ',.!?-*&^%$#@'
+    punc = ',.!?-*&^%$#@[]()'
     with open(file_name) as file:
         for line in file:
             count = count + len(filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split())))
