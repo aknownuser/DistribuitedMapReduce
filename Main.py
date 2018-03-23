@@ -16,7 +16,7 @@ def split_file(file_name, num):
     for line_num in range(0, len(lines), file_len):
         if i > num: break
         data = lines[line_num:line_num+file_len]
-        output = open('part'+str(i), 'w')
+        output = open('parted/part'+str(i), 'w')
         output.writelines(data)
         del data
         output.close()

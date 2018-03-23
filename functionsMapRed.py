@@ -3,14 +3,15 @@ Common definitions for functions
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 from collections import Counter
-import unicodedata, urllib2, time
+import unicodedata, urllib2, time, urllib
 
 def get_file_words(file, http_server, reducer):
     punc = ',.!?-*&^%$#@[]()'
     mapped_words=[]
     # Assuming the file already exists
     print "Downloading "+file
-    contents = urllib2.urlopen(http_server+'/'+file)
+    #contents = urllib2.urlopen(http_server+'/parted/'+file)
+    contents,_ = urllib.urlretrieve(http_server+'/parted/'+file, filename=file)
     lines = contents.read()
     with open(file,'w') as copy_file:
         for elem in lines:
