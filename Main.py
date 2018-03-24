@@ -5,7 +5,7 @@ Authors: Amanda Gomez Gomez, Oussama El Azizi
 
 from pyactor.context import set_context, create_host,shutdown
 import functionsMapRed as fmr
-import os, sys
+import sys
 
 
 def split_file(file_name, num):
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     i = 0
 
     for wor in worker:
-        wor.map(i+1, reducer, fmr.get_file_words, fmr.word_count)
+        wor.map(i+1, reducer, fmr.get_file_words, fmr.counting_words)
         i = i + 1
 
     shutdown()

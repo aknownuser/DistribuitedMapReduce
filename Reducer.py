@@ -9,12 +9,13 @@ import functionsMapRed as fmr
 
 
 class Reduce(object):
-    _tell = ['set_mappers_num', 'set_init_time', 'reduce']
+    _tell = ['set_mappers_num', 'set_init_time', 'reduce', 'mapper_done', 'show_result']
 
     def __init__(self):
         self.mappers = 0
         self.data = Counter()
         self.init_time = 0
+        self.func = None
 
     def set_mappers_num(self, mappers_num):
         self.mappers = mappers_num
@@ -23,12 +24,17 @@ class Reduce(object):
         if self.init_time == 0:
             self.init_time = time.time()
 
+    def mapper_done(self):
+        if self.mappers != 0:
+            self.mappers -= 1
+
+    def show_result(self):
+        if self.mappers == 0:
+            print fmr.outputFormat(self.data)
+            print 'MapReduce completed in ' + str(time.time() - self.init_time) + ' seconds'
+
     def reduce(self, list, func):
         self.data = func(self.data, list)
-        self.mappers -=1
-        if self.mappers == 0:
-            print fmr.outputFormat(self.data, func)
-            print 'MapReduce completed in '+str(time.time() - self.init_time)+ ' seconds'
 
 
 if __name__ == "__main__":
