@@ -18,15 +18,11 @@ def get_file_words(file, http_server, reducer):
     print "Processing Starts"
     with open(file_name) as contents:
         for line in contents:
-            mapped_words.update(filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split())))
+            mapped_words.update(filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split())))
     print "Processing Done"
     return mapped_words
 
 
-def remove_accent_mark(s):
-    s = s.decode('utf-8')
-    result = ''.join((c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn'))
-    return result.encode('utf-8')
 
 def word_count(data, list):
 
