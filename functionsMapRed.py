@@ -10,10 +10,8 @@ def get_file_words(file, http_server, reducer):
     mapped_words = Counter()
     # Assuming the file already exists
     print "Downloading "+file
-    #contents = urllib2.urlopen(http_server+'/parted/'+file)
     file_name,_ = urllib.urlretrieve(http_server+'/parted/'+file, filename=file)
     print "Download done"
-    #print contents
     reducer.set_init_time()
     print "Processing Starts"
     with open(file_name) as contents:
