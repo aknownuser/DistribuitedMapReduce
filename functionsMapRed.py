@@ -7,7 +7,7 @@ import unicodedata, urllib2, time, urllib
 
 def get_file_words(file, http_server, reducer):
     punc = ',.!?-*&^%$#@[]()'
-    mapped_words=[]
+    mapped_words = Counter()
     # Assuming the file already exists
     print "Downloading "+file
     #contents = urllib2.urlopen(http_server+'/parted/'+file)
@@ -18,8 +18,7 @@ def get_file_words(file, http_server, reducer):
     print "Processing Starts"
     with open(file_name) as contents:
         for line in contents:
-            #mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split()))
-            mapped_words = mapped_words + filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split()))
+            mapped_words.update(filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split())))
     print "Processing Done"
     return mapped_words
 

@@ -46,6 +46,10 @@ class Registry(object):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print "Incorrect call, specify one argument, corresponding to the local IP."
+        quit()
+
     set_context()
     address = 'http://'+sys.argv[1]+':5999/'
     host = create_host(address)
