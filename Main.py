@@ -16,7 +16,7 @@ def word_count(f):
         # iterate over each line
         for line in in_file:
             # pass each stripped word from the line to the Counter dict
-            mapped_words =filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split()))
+            mapped_words =filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split()))
             word_dict.update(mapped_words)
     return word_dict
 
@@ -25,7 +25,7 @@ def counting_word(file_name):
     punc = ',.!?-*&^%$#@[]()'
     with open(file_name) as file:
         for line in file:
-            count = count + len(filter(lambda x: x != '', map(lambda x: remove_accent_mark(x.strip(punc).lower()), line.split())))
+            count = count + len(filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split())))
     return count
 
 if __name__ == "__main__":
