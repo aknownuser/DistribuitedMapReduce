@@ -1,7 +1,6 @@
 import time
-import functools
 from collections import Counter
-import unicodedata, sys
+import unicodedata, sys, os
 
 def remove_accent_mark(s):
     s = s.decode('utf-8')
@@ -30,39 +29,24 @@ def counting_word(file_name):
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 2:
+    if len(sys.argv) <= 1:
         print "Not enough paramaters: You need to put the files name."
+    i = 0
+    for x in sys.argv:
+        if i == 0:
+            i = 1
+            continue
+        statinfo = os.stat(x)
+        print "----------COUNT WORDS-----------"
+        print str(x) + ": " + " Size: "+str(statinfo.st_size)
+        start_time = time.time()
+        counting_word(x)
+        elapsed_time = time.time() - start_time
+        print "Elapsed time: " + str(elapsed_time)
 
-    print "----------COUNT WORDS-----------"
-    #start_time = time.time()
-    #print "Sherlok Holmes: "+str(counting_word("big.txt"))
-    #elapsed_time = time.time() - start_time
-    #print "Elapsed time: "+str(elapsed_time)
-
-    start_time = time.time()
-    print "\nEl Quijote: " + str(counting_word(sys.argv[1]))
-    elapsed_time = time.time() - start_time
-    print "Elapsed time: " + str(elapsed_time)
-    #PG10.txt
-    #start_time = time.time()
-    #print "\nThe bible: "+str(counting_word("pg10.txt"))
-    #elapsed_time = time.time() - start_time
-    #print "Elapsed time: " + str(elapsed_time)
-    #print "-------------------------------"
-
-    print "\n----------WORD COUNT----------"
-    #start_time = time.time()
-    #print "Sherlok Holmes: \n" + str(word_count("big.txt"))
-    #elapsed_time = time.time() - start_time
-    #print "Elapsed time: " + str(elapsed_time)
-
-    start_time = time.time()
-    print "\nEl Quijote: \n" + str(word_count(sys.argv[1]))
-    elapsed_time = time.time() - start_time
-    print "Elapsed time: " + str(elapsed_time)
-    # PG10.txt
-    #start_time = time.time()
-    #print "\nThe bible: \n" + str(word_count("pg10.txt"))
-    #elapsed_time = time.time() - start_time
-    #print "Elapsed time: " + str(elapsed_time)
-    #print "------------------------------"
+        print "----------WORD COUNT----------"
+        print str(x) + ": " + " Size: " + str(statinfo.st_size)
+        start_time = time.time()
+        word_count(x)
+        elapsed_time = time.time() - start_time
+        print "Elapsed time: " + str(elapsed_time)
