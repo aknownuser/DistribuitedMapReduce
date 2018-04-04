@@ -30,7 +30,7 @@ def word_count(data, list):
 
 
 def counting_words(data, list):
-    data['total'] = data['total']+len(list)
+    data['total'] = data['total']+sum(list.values())
     print '.'
     return data
 
