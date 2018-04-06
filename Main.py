@@ -9,7 +9,7 @@ import os, sys
 
 
 def split_file(file_name, num):
-
+    print "Spliting files"
     lines = open(file_name).readlines()
     file_len = len(lines)/num
     i = 1
