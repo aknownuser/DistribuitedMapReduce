@@ -6,7 +6,7 @@ from collections import Counter
 import unicodedata, urllib2, time, urllib
 
 def get_file_words(file, http_server, reducer):
-    punc = ',.!?-*&^%$#@[]()'
+    punc = ',.:!?-_\'*&^%$#@[]()'
     mapped_words = Counter()
     # Assuming the file already exists
     print "Downloading "+file
