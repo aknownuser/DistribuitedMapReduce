@@ -3,24 +3,24 @@ Main program that spawns the Mappers and initializes their execution
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 
-from pyactor.context import set_context, create_host,shutdown
+from pyactor.context import set_context, create_host, shutdown
 import functionsMapRed as fmr
-import os, sys
+import sys
 
 
 def split_file(file_name, num):
-    print "Spliting files"
+    print "Splitting files"
     lines = open(file_name).readlines()
-    file_len = len(lines)/num
-    i = 1
+    file_len = len(lines) / num
+    index = 1
     for line_num in range(0, len(lines), file_len):
-        if i > num: break
-        data = lines[line_num:line_num+file_len]
-        output = open('parted/part'+str(i), 'w')
+        if index > num: break
+        data = lines[line_num:line_num + file_len]
+        output = open('parted/part' + str(index), 'w')
         output.writelines(data)
         del data
         output.close()
-        i = i + 1
+        index = index + 1
 
 
 if __name__ == "__main__":
@@ -43,12 +43,13 @@ if __name__ == "__main__":
     i = 0
     for mapper in mappers:
         worker.append(mapper.spawn('mapper', 'Mapper/Map'))
-        worker[i].set_http_server('http://'+sys.argv[3])
-        i = i+1
+        worker[i].set_http_server('http://' + sys.argv[3])
+        i = i + 1
     reducer.set_mappers_num(i)
     split_file(sys.argv[1], i)
 
-    print 'We will be working with '+str(i)+' mappers and 1 reducer. Please choose the program to run:\n1- Word Count\n2- Counting words'
+    print 'We will be working with ' + str(
+        i) + ' mappers and 1 reducer. Please choose the program to run:\n1- Word Count\n2- Counting words'
     option = raw_input('>> ')
     while option != '1' and option != '2':
         option = raw_input('Please try again!\t>> ')
@@ -60,7 +61,7 @@ if __name__ == "__main__":
 
     i = 0
     for wor in worker:
-        wor.map(i+1, reducer, fmr.get_file_words, program)
+        wor.map(i + 1, reducer, fmr.get_file_words, program)
         i = i + 1
 
     shutdown()
