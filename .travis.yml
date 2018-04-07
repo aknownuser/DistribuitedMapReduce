@@ -14,5 +14,5 @@ script:
   - python -m coverage run test.py
 
 after_success:
-- codecov
+- codecov -t e1505cf1-e35e-4e0b-9b0a-85be578a4c38
 
