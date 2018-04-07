@@ -9,6 +9,7 @@ install:
   - pip install codecov
 
 script:
+  - python -m SimpleHTTPServer
   - python -m coverage run test.py
 
 after_success:
