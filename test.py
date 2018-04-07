@@ -52,14 +52,14 @@ class MyTestCase(unittest.TestCase):
         self.reduce.set_mappers_num(1)
         self.mapper.map(-1, self.reduce, fmr.get_file_words, fmr.word_count)
         time.sleep(2)
-        self.assertListEqual(self.out.lines[:-1], open('wordCount', 'r').readlines()[:-1], self.out.lines)
+        self.assertListEqual(self.out.lines[:-1], open('wordCount', 'r').readlines()[:-1])
 
     def test_countwords(self):
         self.out.clear()
         self.reduce.set_mappers_num(1)
         self.mapper.map(-1, self.reduce, fmr.get_file_words, fmr.counting_words)
-        time.sleep(2)
-        self.assertListEqual(self.out.lines[:-1], open('count', 'r').readlines()[:-1], self.out.lines)
+        time.sleep(2) 
+        self.assertListEqual(self.out.lines[:-1], open('count', 'r').readlines()[:-1])
 
     def test_unbindall(self):
         self.registry.unbind('reducer')
