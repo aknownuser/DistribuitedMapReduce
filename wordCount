@@ -1,0 +1,11 @@
+Downloading part-1
+Download done
+Processing Starts
+Processing Done
+Mapper finished
+.
+Results for word_count
+---------------------------
+Frequencies are:
+Counter({'es': 3, 'prueba': 2, 'cosas': 2, 'peque\xc3\x91o': 2, 'este': 1, 'en': 1, 'alal': 1, 'de': 1, 'por': 1, 'texto': 1, 'eso': 1, 'aunque': 1, 'llano': 1, 'nuevas': 1, 'muy': 1, 'repito': 1, 'y': 1, 'caste': 1})
+MapReduce completed in 0.00117516517639 seconds
