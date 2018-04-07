@@ -4,7 +4,7 @@ Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 from collections import Counter
 import time, sys
-from pyactor.context import set_context, create_host, serve_forever, sleep, shutdown
+from pyactor.context import set_context, create_host, serve_forever
 import functionsMapRed as fmr
 
 
@@ -23,12 +23,12 @@ class Reduce(object):
         if self.init_time == 0:
             self.init_time = time.time()
 
-    def reduce(self, list, func):
-        self.data = func(self.data, list)
-        self.mappers -=1
+    def reduce(self, values_list, func):
+        self.data = func(self.data, values_list)
+        self.mappers -= 1
         if self.mappers == 0:
             print fmr.outputFormat(self.data, func)
-            print 'MapReduce completed in '+str(time.time() - self.init_time)+ ' seconds'
+            print 'MapReduce completed in ' + str(time.time() - self.init_time) + ' seconds'
 
 
 if __name__ == "__main__":
@@ -43,6 +43,5 @@ if __name__ == "__main__":
     registry_address = 'http://' + sys.argv[1] + ':5999/registry'
     registry = host.lookup_url(registry_address, 'Registry', 'Registry')
     registry.bind('reducer', host)
-
 
     serve_forever()

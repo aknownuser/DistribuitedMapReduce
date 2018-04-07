@@ -6,8 +6,10 @@ Authors: Amanda Gomez Gomez, Oussama El Azizi
 from pyactor.context import set_context, create_host, serve_forever
 import sys
 
+
 class NotFound(Exception):
     pass
+
 
 class Registry(object):
     _ask = ['get_all', 'bind', 'lookup', 'unbind']
@@ -20,10 +22,10 @@ class Registry(object):
 
     def bind(self, name, actor):
         if name == 'reducer':
-          #  print 'registered reducer'
+            print 'registered reducer'
             self.reducer[name] = actor
         else:
-          #  print "registered", name
+            print "registered", name
             self.actors[name] = actor
 
     def unbind(self, name):
@@ -51,7 +53,7 @@ if __name__ == "__main__":
         quit()
 
     set_context()
-    address = 'http://'+sys.argv[1]+':5999/'
+    address = 'http://' + sys.argv[1] + ':5999/'
     host = create_host(address)
 
     registry = host.spawn('registry', Registry)

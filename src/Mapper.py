@@ -12,15 +12,18 @@ class Map(object):
     _tell = ['map', 'set_http_server']
     _ref = ['map']
 
-    def map(self, i, reducer, map_func, red_func):
+    def __init__(self):
+        self.http_server = ''
 
-        file = 'part' + str(i)
-        mapped_words = map_func(file, self.http_server, reducer)
+    def map(self, i, reducer, map_func, red_func):
+        file_name = 'part' + str(i)
+        mapped_words = map_func(file_name, self.http_server, reducer)
         print "Mapper finished"
         reducer.reduce(mapped_words, red_func)
 
     def set_http_server(self, addr):
-        self.http_server = addr+':8000'
+        self.http_server = addr + ':8000'
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
@@ -28,11 +31,11 @@ if __name__ == "__main__":
         quit()
 
     set_context()
-    address = 'http://' + sys.argv[3] + ':600'+str(sys.argv[1])
+    address = 'http://' + sys.argv[3] + ':600' + str(sys.argv[1])
     host = create_host(address)
 
-    registry_address = 'http://'+sys.argv[2]+':5999/registry'
+    registry_address = 'http://' + sys.argv[2] + ':5999/registry'
     registry = host.lookup_url(registry_address, 'Registry', 'Registry')
-    name = 'worker'+str(sys.argv[1])
+    name = 'worker' + str(sys.argv[1])
     registry.bind(name, host)
     serve_forever()
