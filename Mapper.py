@@ -5,9 +5,7 @@ Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 import sys
 
-from pyactor.context import set_context, create_host, serve_forever, sleep, shutdown
-from collections import Counter
-import functionsMapRed as fmr
+from pyactor.context import set_context, create_host, serve_forever
 
 
 class Map(object):
@@ -18,7 +16,7 @@ class Map(object):
 
         file = 'part' + str(i)
         mapped_words = map_func(file, self.http_server, reducer)
-        #print "Mapper finished"
+        print "Mapper finished"
         reducer.reduce(mapped_words, red_func)
 
     def set_http_server(self, addr):

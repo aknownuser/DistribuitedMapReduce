@@ -9,21 +9,22 @@ import sys, time
 
 class Outs(object):
 
-    lines =""
+    lines =[]
 
     def write(self, line):
-
-        self.lines += line
-
+        if line == '\n':
+            line_split = map (lambda x: x+'\n',self.lines.pop().split('\n'))
+            self.lines += line_split
+        else:
+            self.lines.append(line)
     def clear(self):
-
-        self.lines=""
+        self.lines=[]
 
 class MyTestCase(unittest.TestCase):
 
     def setUp(self):
         set_context()
-
+        self.maxDiff=None
         self.h = create_host()
         self.registry = self.h.spawn('Registry', Registry)
 
@@ -43,24 +44,29 @@ class MyTestCase(unittest.TestCase):
 
     def tearDown(self):
         shutdown()
+        self.out.clear()
 
     def test_frequencies(self):
+        self.out.clear()
         self.reduce.set_mappers_num(1)
         self.mapper.map(-1, self.reduce,fmr.get_file_words, fmr.word_count)
         time.sleep(2)
-        self.assertEqual(self.out.lines, open('wordCount', 'r').read())
+        self.assertListEqual(self.out.lines[:-1], open('wordCount', 'r').readlines()[:-1], self.out.lines)
 
     def test_countwords(self):
+        self.out.clear()
         self.reduce.set_mappers_num(1)
         self.mapper.map(-1, self.reduce, fmr.get_file_words, fmr.counting_words)
         time.sleep(2)
-        self.assertEqual(self.out.lines, open('count','r').read())
+        self.assertListEqual(self.out.lines[:-1], open('count','r').readlines()[:-1], self.out.lines)
 
     def test_unbindall(self):
         self.registry.unbind('reducer')
         self.registry.unbind('mapper')
         self.assertRaises(KeyError, self.registry.lookup,'reducer')
+        self.assertEqual(self.registry.lookup('mapper'), None)
         self.assertListEqual(self.registry.get_all(), [])
+
 
 
 if __name__ == '__main__':
