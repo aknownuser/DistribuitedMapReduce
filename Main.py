@@ -14,7 +14,8 @@ def split_file(file_name, num):
     file_len = len(lines) / num
     index = 1
     for line_num in range(0, len(lines), file_len):
-        if index > num: break
+        if index > num:
+            break
         data = lines[line_num:line_num + file_len]
         output = open('parted/part' + str(index), 'w')
         output.writelines(data)
@@ -25,7 +26,8 @@ def split_file(file_name, num):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print "Error, you should specify 3 parameters: the name of the file to process, the registry's IP and the local IP."
+        print "Error, you should specify 3 parameters: the name of the file to process, " \
+              "the registry's IP and the local IP."
         quit()
 
     set_context()

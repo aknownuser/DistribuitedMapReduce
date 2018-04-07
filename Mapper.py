@@ -27,7 +27,8 @@ class Map(object):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print "Incorrect call, specify three arguments, corresponding to the worker number, the IP for registry, and the local IP."
+        print "Incorrect call, specify three arguments, corresponding to the worker number, the IP for registry" \
+              ", and the local IP."
         quit()
 
     set_context()
