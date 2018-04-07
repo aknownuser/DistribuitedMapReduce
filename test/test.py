@@ -1,10 +1,10 @@
 import unittest
 
-from pyactor.context import set_context, create_host, sleep, shutdown
-from Mapper import Map
-from Reducer import  Reduce
-from Registry import Registry
-import functionsMapRed as fmr
+from pyactor.context import set_context, create_host, shutdown
+from src.Mapper import Map
+from src.Reducer import  Reduce
+from src.Registry import Registry
+from src import functionsMapRed as fmr
 import sys, time
 
 class Outs(object):
