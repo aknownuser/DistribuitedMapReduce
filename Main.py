@@ -2,14 +2,10 @@ import time
 from collections import Counter
 import unicodedata, sys, os
 
-def remove_accent_mark(s):
-    s = s.decode('utf-8')
-    result = ''.join((c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn'))
-    return result.encode('utf-8')
 
 def word_count(f):
     word_dict = Counter()
-    punc = ',.!?-*&^%$#@[]()'
+    punc = ',.:;!?-_\'\"+=/*&^%$#@[]()'
     #  with will automatically close your file
     with open(f) as in_file:
         # iterate over each line
@@ -21,7 +17,7 @@ def word_count(f):
 
 def counting_word(file_name):
     count = 0
-    punc = ',.!?-*&^%$#@[]()'
+    punc = ',.:;!?-_\'\"+=/*&^%$#@[]()'
     with open(file_name) as file:
         for line in file:
             count = count + len(filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split())))
