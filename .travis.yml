@@ -13,5 +13,5 @@ script:
   - python -m coverage run test.py
 
 after_success:
-- python -m codecov
+- codecov
 
