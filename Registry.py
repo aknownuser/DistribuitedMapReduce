@@ -20,10 +20,10 @@ class Registry(object):
 
     def bind(self, name, actor):
         if name == 'reducer':
-            print 'registered reducer'
+          #  print 'registered reducer'
             self.reducer[name] = actor
         else:
-            print "registered", name
+          #  print "registered", name
             self.actors[name] = actor
 
     def unbind(self, name):

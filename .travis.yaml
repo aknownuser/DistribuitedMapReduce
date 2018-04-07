@@ -9,7 +9,8 @@ install:
   - pip install codecov
 
 script:
-  - python -m coverage run tests.py
+  - python -m coverage run test.py
 
 after_success:
-- codecov
+- python -m codecov
+

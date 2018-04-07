@@ -9,16 +9,15 @@ def get_file_words(file, http_server, reducer):
     punc = ',.:;!?-_\'\"+=/*&^%$#@[]()'
     mapped_words = Counter()
     # Assuming the file already exists
-    print "Downloading "+file
+    #print "Downloading "+file
     file_name,_ = urllib.urlretrieve(http_server+'/parted/'+file, filename=file)
-    print "Download done"
+    #print "Download done"
     reducer.set_init_time()
-    time_stamp = time.time()
-    print "Processing Starts"
+    #print "Processing Starts"
     with open(file_name) as contents:
         for line in contents:
             mapped_words.update(filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split())))
-    print "Processing Done {0}".format(time.time()-time_stamp)
+    #print "Processing Done"
     return mapped_words
 
 
@@ -26,17 +25,23 @@ def get_file_words(file, http_server, reducer):
 def word_count(data, list):
 
     data.update(list)
-    print '.'
+    #print '.'
     return data
 
 
 def counting_words(data, list):
     data['total'] = data['total']+sum(list.values())
-    print '.'
+    #print '.'
     return data
 
 
-def outputFormat(data, func):
+def outputFormat(data, func, test=False):
+    if test:
+        if func.__name__ == 'word_count':
+            return str(data)
+        else:
+            return str(data['total'])
+
     if func.__name__ == 'word_count':
         return 'Results for word_count\n---------------------------\nFrequencies are:\n'+str(data)
     return 'Results for counting words\n---------------------------\nTotal count of words: '+str(data['total'])

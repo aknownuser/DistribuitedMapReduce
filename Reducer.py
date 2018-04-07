@@ -27,8 +27,8 @@ class Reduce(object):
         self.data = func(self.data, list)
         self.mappers -=1
         if self.mappers == 0:
-            print fmr.outputFormat(self.data, func)
-            print 'MapReduce completed in '+str(time.time() - self.init_time)+ ' seconds'
+            print fmr.outputFormat(self.data, func,test=True)
+            #print 'MapReduce completed in '+str(time.time() - self.init_time)+ ' seconds'
 
 
 if __name__ == "__main__":
