@@ -94,3 +94,8 @@ python Mapper.py WORKER_NUM IP_REGISTRY IP_LOCAL_PC
 ```
 python Main.py FILE_NAME IP_REGISTRY IP_LOCAL_PC
 ```
+
+## Authors
+
+* **Amanda Gómez Gómez** - [amandagomez](https://github.com/amandagomez)
+* **Oussama El Azizi** - [OussamaElazizi](https://github.com/OussamaElazizi)
