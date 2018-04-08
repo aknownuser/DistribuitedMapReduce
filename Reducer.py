@@ -4,7 +4,8 @@ Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 
 from collections import Counter
-import time, sys
+import time
+import sys
 from pyactor.context import set_context, create_host, serve_forever
 import functionsMapRed as fmr
 
@@ -18,9 +19,7 @@ class Reduce(object):
     _tell = ['set_mappers_num', 'set_init_time', 'reduce']
 
     def __init__(self):
-        """
-        Constructor
-        """
+        """ Constructor. """
         self.mappers = 0
         self.data = Counter()
         self.init_time = 0

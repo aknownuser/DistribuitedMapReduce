@@ -1,5 +1,5 @@
 """
-Registry that contains the Workers and Reducer's data, to be contacted from outer actors
+Registry that contains the Workers and Reducer's data, to be contacted from outer actors.
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 
@@ -8,10 +8,10 @@ import sys
 
 
 class NotFound(Exception):
+
     """
     Not found Exception.
     """
-
     pass
 
 
@@ -26,9 +26,7 @@ class Registry(object):
     _ref = ['get_all', 'bind', 'lookup']
 
     def __init__(self):
-        """
-        Constructor.
-        """
+        """ Constructor. """
         self.actors = {}
         self.reducer = {}
 

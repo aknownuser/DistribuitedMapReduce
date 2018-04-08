@@ -10,6 +10,7 @@ import urllib
 def get_file_words(file_name, http_server, reducer):
     """
     Download file via HTTP and normalize its words.
+
     :param file_name: file to be downloaded
     :param http_server: HTTP server URL
     :param reducer: reducer instance to start the timing
@@ -25,8 +26,7 @@ def get_file_words(file_name, http_server, reducer):
     print "Processing Starts"
     with open(file_name) as contents:
         for line in contents:
-            list_val = [val for val in [x.strip(punc).lower() for x in line.split()] if val != '']
-            mapped_words.update(filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split())))
+            mapped_words.update([val for val in [x.strip(punc).lower() for x in line.split()] if val != ''])
     print "Processing Done"
     return mapped_words
 
@@ -34,6 +34,7 @@ def get_file_words(file_name, http_server, reducer):
 def word_count(data, values_list):
     """
     Creates a Map with frequencies of every word in a list.
+
     :param data: Map that contains frequencies
     :param values_list: list of words to be added
     :return: Updated Map
@@ -46,6 +47,7 @@ def word_count(data, values_list):
 def counting_words(data, values_list):
     """
     Adds the number of a list to a accumulator.
+
     :param data: accumulator
     :param values_list: list containing words
     :return: accumulator
@@ -58,6 +60,7 @@ def counting_words(data, values_list):
 def outputFormat(data, func):
     """
     Standard output format.
+    
     :param data: result data
     :param func: function executed
     :return:
