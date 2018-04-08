@@ -1,4 +1,5 @@
 # DistribuitedMapReduce
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7a83c79c29dd449783c3ac942967bf21)](https://app.codacy.com/app/oussamaelazizi.opt/DistribuitedMapReduce?utm_source=github.com&utm_medium=referral&utm_content=OussamaElazizi/DistribuitedMapReduce&utm_campaign=badger)
 [![Build Status](https://travis-ci.com/OussamaElazizi/DistribuitedMapReduce.svg?token=xtsm6Ui1qLPWyjTcRFmx&branch=master)](https://travis-ci.com/OussamaElazizi/DistribuitedMapReduce)
 [![codecov](https://codecov.io/gh/OussamaElazizi/DistribuitedMapReduce/branch/master/graph/badge.svg?token=SFNfd9sqPP)](https://codecov.io/gh/OussamaElazizi/DistribuitedMapReduce)
 
