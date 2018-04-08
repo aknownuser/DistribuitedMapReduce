@@ -60,7 +60,7 @@ def counting_words(data, values_list):
 def outputFormat(data, func):
     """
     Standard output format.
-    
+
     :param data: result data
     :param func: function executed
     :return:
