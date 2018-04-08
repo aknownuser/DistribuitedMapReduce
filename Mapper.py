@@ -1,8 +1,9 @@
 """
-Workers to be binded to the registry and later used to spawn Mappers
-The call takes 1 parameter, to specify the number of the worker
+Workers to be binded to the registry and later used to spawn Mappers.
+The call takes 1 parameter, to specify the number of the worker.
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
+
 import sys
 
 from pyactor.context import set_context, create_host, serve_forever
@@ -10,7 +11,7 @@ from pyactor.context import set_context, create_host, serve_forever
 
 class Map(object):
     """
-    Actor Map
+    Actor Map.
     """
     _tell = ['map', 'set_http_server']
     _ref = ['map']
@@ -19,17 +20,19 @@ class Map(object):
         """
         Constructor
         """
+
         self.http_server = ''
 
     def map(self, i, reducer, map_func, red_func):
         """
-        Calls the map function and sends the mapped data to the reducer
+        Calls the map function and sends the mapped data to the reducer.
         :param i: identification number
         :param reducer: reducer instance
         :param map_func: map function
         :param red_func: reduce function
         :return:
         """
+
         file_name = 'part' + str(i)
         mapped_words = map_func(file_name, self.http_server, reducer)
         print "Mapper finished"
@@ -37,10 +40,11 @@ class Map(object):
 
     def set_http_server(self, addr):
         """
-        Setting the HTTP server URL
+        Setting the HTTP server URL.
         :param addr: URL without port
         :return:
         """
+
         self.http_server = addr + ':8000'
 
 

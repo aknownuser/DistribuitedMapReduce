@@ -1,19 +1,21 @@
 """"
-Common definitions for functions
+Common definitions for functions.
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
+
 from collections import Counter
 import urllib
 
 
 def get_file_words(file_name, http_server, reducer):
     """
-    Download file via HTTP and normalize its words
+    Download file via HTTP and normalize its words.
     :param file_name: file to be downloaded
     :param http_server: HTTP server URL
     :param reducer: reducer instance to start the timing
     :return: Map with all words
     """
+
     punc = ',.:;!?-_\'\"+=/*&^%$#@[]()'
     mapped_words = Counter()
     # Assuming the file already exists
@@ -31,11 +33,12 @@ def get_file_words(file_name, http_server, reducer):
 
 def word_count(data, values_list):
     """
-    Creates a Map with frequencies of every word in a list
+    Creates a Map with frequencies of every word in a list.
     :param data: Map that contains frequencies
     :param values_list: list of words to be added
     :return: Updated Map
     """
+
     data.update(values_list)
     print '.'
     return data
@@ -43,11 +46,12 @@ def word_count(data, values_list):
 
 def counting_words(data, values_list):
     """
-    Adds the number of a list to a accumulator
+    Adds the number of a list to a accumulator.
     :param data: accumulator
     :param values_list: list containing words
     :return: accumulator
     """
+
     data['total'] = data['total'] + sum(values_list.values())
     print '.'
     return data
@@ -55,11 +59,12 @@ def counting_words(data, values_list):
 
 def outputFormat(data, func):
     """
-    Standard output format
+    Standard output format.
     :param data: result data
     :param func: function executed
     :return:
     """
+
     if func.__name__ == 'word_count':
         return 'Results for word_count\n---------------------------\nFrequencies are:\n' + str(data)
     return 'Results for counting words\n---------------------------\nTotal count of words: ' + str(data['total'])

@@ -3,6 +3,7 @@ unittest
 
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
+
 import unittest
 
 from pyactor.context import set_context, create_host, shutdown
@@ -22,10 +23,11 @@ class Outs(object):
 
     def write(self, line):
         """
-        Function that stores the lines of sdtout
+        Function that stores the lines of sdtout.
         :param line: line to be stored
         :return:
         """
+
         if line == '\n':
             line_split = map(lambda x: x + '\n', self.lines.pop().split('\n'))
             self.lines += line_split
@@ -34,15 +36,16 @@ class Outs(object):
 
     def clear(self):
         """
-        Clears the stdout lines
+        Clears the stdout lines.
         :return:
         """
+
         self.lines = []
 
 
 class MyTestCase(unittest.TestCase):
     """
-    Testing class
+    Testing class.
     """
 
     def setUp(self):
@@ -70,9 +73,10 @@ class MyTestCase(unittest.TestCase):
 
     def test_frequencies(self):
         """
-        Tests the frequencies
+        Tests the frequencies.
         :return:
         """
+
         self.out.clear()
         self.reduce.set_mappers_num(1)
         self.mapper.map(-1, self.reduce, fmr.get_file_words, fmr.word_count)
@@ -92,9 +96,10 @@ class MyTestCase(unittest.TestCase):
 
     def test_unbind_all(self):
         """
-        Test the bind and unbind in the registry
+        Test the bind and unbind in the registry.
         :return:
         """
+
         self.registry.unbind('reducer')
         self.registry.unbind('mapper')
         self.assertRaises(KeyError, self.registry.lookup, 'reducer')

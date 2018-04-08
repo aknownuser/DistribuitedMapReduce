@@ -9,8 +9,9 @@ import sys
 
 class NotFound(Exception):
     """
-    Not found Exception
+    Not found Exception.
     """
+
     pass
 
 
@@ -18,6 +19,7 @@ class Registry(object):
     """
     Name service resolver actor.
     """
+
     _ask = ['get_all', 'bind', 'lookup', 'unbind']
     _tell = []
     _ref = ['get_all', 'bind', 'lookup']
@@ -26,17 +28,19 @@ class Registry(object):
         """
         Constructor
         """
+
         self.actors = {}
         self.reducer = {}
 
     def bind(self, name, actor):
         """
         Bind a name to an spawned reference of an actor.
-        Reducer and Mappers are binded in different lists
+        Reducer and Mappers are binded in different lists.
         :param name: name to be recognized with (unique)
         :param actor: spawned reference
         :return:
         """
+
         if name == 'reducer':
             print 'registered reducer'
             self.reducer[name] = actor
@@ -46,10 +50,11 @@ class Registry(object):
 
     def unbind(self, name):
         """
-        Delete the binded reference between a name and an actor
+        Delete the binded reference between a name and an actor.
         :param name: name to be deleted
         :return:
         """
+
         if name in self.actors.keys():
             del self.actors[name]
         elif name in self.reducer.keys():
@@ -59,10 +64,11 @@ class Registry(object):
 
     def lookup(self, name):
         """
-        Function to make query's to the registry
+        Function to make query's to the registry.
         :param name: actor identification
         :return: actor spawned reference
         """
+
         if name == 'reducer':
             return self.reducer['reducer']
         elif name in self.actors:
@@ -71,9 +77,10 @@ class Registry(object):
 
     def get_all(self):
         """
-        Obtain all the actors references in the actors map (does not return the reducers)
+        Obtain all the actors references in the actors map (does not return the reducers).
         :return: actors spawned reference list
         """
+
         return self.actors.values()
 
 

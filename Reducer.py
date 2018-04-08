@@ -1,7 +1,8 @@
 """
-Reducer to be binded to the registry and later used for the Reducing stage
+Reducer to be binded to the registry and later used for the Reducing stage.
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
+
 from collections import Counter
 import time, sys
 from pyactor.context import set_context, create_host, serve_forever
@@ -12,12 +13,14 @@ class Reduce(object):
     """
     Actor Reduce
     """
+
     _tell = ['set_mappers_num', 'set_init_time', 'reduce']
 
     def __init__(self):
         """
         Constructor
         """
+
         self.mappers = 0
         self.data = Counter()
         self.init_time = 0
@@ -28,23 +31,26 @@ class Reduce(object):
         :param mappers_num: number of mappers
         :return:
         """
+
         self.mappers = mappers_num
 
     def set_init_time(self):
         """
-        Start processing time (accounting)
+        Start processing time (accounting).
         :return:
         """
+
         if self.init_time == 0:
             self.init_time = time.time()
 
     def reduce(self, values_list, func):
         """
-        Calls the reduce function and prints the results when all the mappers have finished
+        Calls the reduce function and prints the results when all the mappers have finished.
         :param values_list: list of values to process
         :param func: reduce function
         :return:
         """
+
         self.data = func(self.data, values_list)
         self.mappers -= 1
         if self.mappers == 0:
