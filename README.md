@@ -23,10 +23,20 @@ Este proyecto es una implementación de MapReduce en un sistema distribuido util
 El modelo se basa en un programa master, un reducer y un número indefinido de mappers.
 El funcionamiento por defecto es el tratamiento de ficheros (contar paralabras y/o frecuencias de palabras), pero se puede adaptar el código para cumplir con otras necesidades.
 
+Los componentes de la implemenatación son:
+- **Registry.py**: Servicio de nombres del sistema.
+- **Mapper.py**: Actor que controla el flujo y ejecuta la función de Map.
+- **Reducer.py**: Actor que controla el flujo, aplica la función del reduce por cada mapper que acaba
+y muestra el resultado por pantalla.
+- **functionsMapRed.py**: Contiene todos los métodos de Map, Reduce, formato de resultado y obtención de ficheros del servidor HTTP.
+- **Main.py**: Programa principal que inicia la secuéncia de proceso. 
+
+
 El proceso de tratameinto tiene el siguiente flujo, primero se inician todos los componentes del sistema siguiendo el orden
 en la sección de **Funcionamiento**. El _Main.py_ es el que inicia la secuencia de tratamiento
 tal que, primero el main obtiene todos los mappers registrados y les hace _spawn_ y seguidamente empieza a partir 
-el fichero a tratar sobre el número de mappers creados. Finalmente se hace eligir la función de Map y se empieza la ejecución. 
+el fichero a tratar sobre el número de mappers creados. Finalmente se hace eligir la función de Map y se empieza la ejecución; cada Mapper
+descarga el trozo de fichero que le pertenece de un servidor HTTP. 
    
 
 ### Prerequisitos
