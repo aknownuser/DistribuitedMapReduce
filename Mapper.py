@@ -1,5 +1,6 @@
 """
 Workers to be binded to the registry and later used to spawn Mappers.
+
 The call takes 1 parameter, to specify the number of the worker.
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
@@ -10,6 +11,7 @@ from pyactor.context import set_context, create_host, serve_forever
 
 
 class Map(object):
+
     """
     Actor Map.
     """

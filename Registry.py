@@ -16,6 +16,7 @@ class NotFound(Exception):
 
 
 class Registry(object):
+
     """
     Name service resolver actor.
     """
@@ -26,7 +27,7 @@ class Registry(object):
 
     def __init__(self):
         """
-        Constructor
+        Constructor.
         """
         self.actors = {}
         self.reducer = {}
@@ -34,6 +35,7 @@ class Registry(object):
     def bind(self, name, actor):
         """
         Bind a name to an spawned reference of an actor.
+
         Reducer and Mappers are binded in different lists.
         :param name: name to be recognized with (unique)
         :param actor: spawned reference

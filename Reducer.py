@@ -10,8 +10,9 @@ import functionsMapRed as fmr
 
 
 class Reduce(object):
+
     """
-    Actor Reduce
+    Actor Reduce.
     """
 
     _tell = ['set_mappers_num', 'set_init_time', 'reduce']

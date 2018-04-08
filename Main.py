@@ -1,5 +1,6 @@
 """
-Main program that spawns the Mappers and initializes their execution
+Main program that spawns the Mappers and initializes their execution.
+
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 
@@ -10,7 +11,7 @@ import sys
 
 def split_file(file_name, num):
     """
-    Function tath splits a file into num files
+    Function that splits a file into num files.
     :param file_name: file to split
     :param num: number of chunks
     :return:

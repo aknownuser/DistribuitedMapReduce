@@ -25,6 +25,7 @@ def get_file_words(file_name, http_server, reducer):
     print "Processing Starts"
     with open(file_name) as contents:
         for line in contents:
+            list_val = [val for val in [x.strip(punc).lower() for x in line.split()] if val != '']
             mapped_words.update(filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split())))
     print "Processing Done"
     return mapped_words

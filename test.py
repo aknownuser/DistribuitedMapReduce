@@ -16,8 +16,9 @@ import time
 
 
 class Outs(object):
+
     """
-    Class that controls the stdou
+    Class that controls the stdou.
     """
     lines = []
 
@@ -43,6 +44,7 @@ class Outs(object):
 
 
 class MyTestCase(unittest.TestCase):
+
     """
     Testing class.
     """
@@ -83,7 +85,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_count_words(self):
         """
-        Tests the word count
+        Tests the word count.
         :return:
         """
         self.out.clear()
