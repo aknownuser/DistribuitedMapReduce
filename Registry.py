@@ -28,7 +28,6 @@ class Registry(object):
         """
         Constructor
         """
-
         self.actors = {}
         self.reducer = {}
 
@@ -40,7 +39,6 @@ class Registry(object):
         :param actor: spawned reference
         :return:
         """
-
         if name == 'reducer':
             print 'registered reducer'
             self.reducer[name] = actor
@@ -54,7 +52,6 @@ class Registry(object):
         :param name: name to be deleted
         :return:
         """
-
         if name in self.actors.keys():
             del self.actors[name]
         elif name in self.reducer.keys():
@@ -68,7 +65,6 @@ class Registry(object):
         :param name: actor identification
         :return: actor spawned reference
         """
-
         if name == 'reducer':
             return self.reducer['reducer']
         elif name in self.actors:
@@ -80,7 +76,6 @@ class Registry(object):
         Obtain all the actors references in the actors map (does not return the reducers).
         :return: actors spawned reference list
         """
-
         return self.actors.values()
 
 

@@ -39,7 +39,6 @@ class Outs(object):
         Clears the stdout lines.
         :return:
         """
-
         self.lines = []
 
 
@@ -76,7 +75,6 @@ class MyTestCase(unittest.TestCase):
         Tests the frequencies.
         :return:
         """
-
         self.out.clear()
         self.reduce.set_mappers_num(1)
         self.mapper.map(-1, self.reduce, fmr.get_file_words, fmr.word_count)
@@ -99,7 +97,6 @@ class MyTestCase(unittest.TestCase):
         Test the bind and unbind in the registry.
         :return:
         """
-
         self.registry.unbind('reducer')
         self.registry.unbind('mapper')
         self.assertRaises(KeyError, self.registry.lookup, 'reducer')

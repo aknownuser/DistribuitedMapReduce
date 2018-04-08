@@ -20,7 +20,6 @@ class Reduce(object):
         """
         Constructor
         """
-
         self.mappers = 0
         self.data = Counter()
         self.init_time = 0
@@ -31,7 +30,6 @@ class Reduce(object):
         :param mappers_num: number of mappers
         :return:
         """
-
         self.mappers = mappers_num
 
     def set_init_time(self):
@@ -39,7 +37,6 @@ class Reduce(object):
         Start processing time (accounting).
         :return:
         """
-
         if self.init_time == 0:
             self.init_time = time.time()
 
@@ -50,7 +47,6 @@ class Reduce(object):
         :param func: reduce function
         :return:
         """
-
         self.data = func(self.data, values_list)
         self.mappers -= 1
         if self.mappers == 0:

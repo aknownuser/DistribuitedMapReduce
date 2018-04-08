@@ -9,6 +9,12 @@ import sys
 
 
 def split_file(file_name, num):
+    """
+    Function tath splits a file into num files
+    :param file_name: file to split
+    :param num: number of chunks
+    :return:
+    """
     print "Splitting files"
     lines = open(file_name).readlines()
     file_len = len(lines) / num

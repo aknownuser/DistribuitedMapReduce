@@ -15,7 +15,6 @@ def get_file_words(file_name, http_server, reducer):
     :param reducer: reducer instance to start the timing
     :return: Map with all words
     """
-
     punc = ',.:;!?-_\'\"+=/*&^%$#@[]()'
     mapped_words = Counter()
     # Assuming the file already exists
@@ -38,7 +37,6 @@ def word_count(data, values_list):
     :param values_list: list of words to be added
     :return: Updated Map
     """
-
     data.update(values_list)
     print '.'
     return data
@@ -51,7 +49,6 @@ def counting_words(data, values_list):
     :param values_list: list containing words
     :return: accumulator
     """
-
     data['total'] = data['total'] + sum(values_list.values())
     print '.'
     return data
@@ -64,7 +61,6 @@ def outputFormat(data, func):
     :param func: function executed
     :return:
     """
-
     if func.__name__ == 'word_count':
         return 'Results for word_count\n---------------------------\nFrequencies are:\n' + str(data)
     return 'Results for counting words\n---------------------------\nTotal count of words: ' + str(data['total'])

@@ -20,7 +20,6 @@ class Map(object):
         """
         Constructor
         """
-
         self.http_server = ''
 
     def map(self, i, reducer, map_func, red_func):
@@ -32,7 +31,6 @@ class Map(object):
         :param red_func: reduce function
         :return:
         """
-
         file_name = 'part' + str(i)
         mapped_words = map_func(file_name, self.http_server, reducer)
         print "Mapper finished"
@@ -44,7 +42,6 @@ class Map(object):
         :param addr: URL without port
         :return:
         """
-
         self.http_server = addr + ':8000'
 
 
