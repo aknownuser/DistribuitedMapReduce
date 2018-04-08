@@ -23,13 +23,13 @@ Este proyecto es una implementación de MapReduce en un sistema distribuido util
 El modelo se basa en un programa master, un reducer y un número indefinido de mappers.
 El funcionamiento por defecto es el tratamiento de ficheros (contar paralabras y/o frecuencias de palabras), pero se puede adaptar el código para cumplir con otras necesidades.
 
-Los componentes de la implemenatación son:
+Los componentes de la implementación son:
 - **Registry.py**: Servicio de nombres del sistema.
 - **Mapper.py**: Actor que controla el flujo y ejecuta la función de Map.
 - **Reducer.py**: Actor que controla el flujo, aplica la función del reduce por cada mapper que acaba
-y muestra el resultado por pantalla.
+y muestra el resultado por pantalla cuando acaba el último mapper.
 - **functionsMapRed.py**: Contiene todos los métodos de Map, Reduce, formato de resultado y obtención de ficheros del servidor HTTP.
-- **Main.py**: Programa principal que inicia la secuéncia de proceso. 
+- **Main.py**: Programa principal que inicia la secuencia del proceso. 
 
 
 El proceso de tratameinto tiene el siguiente flujo, primero se inician todos los componentes del sistema siguiendo el orden
@@ -47,23 +47,23 @@ El modelo implementado utiliza el middleware pyactor.
 pip install pyactor
 ```
 Puede encontrar más información en [Pyactor](https://github.com/pedrotgn/pyactor)
-### Terminologia e uso
+### Terminología e uso
 
 Para poder explicar como se utiliza se tiene que definir un terminología:
 
 - IP_LOCAL_PC: Dirección IP del ordenador que en un momento inicia un script.
 - IP_REGISTRY: Dirección IP del ordenador que corre el Registry.py.
 - WORKER_NUM: Número identificador del mapper, que se utiliza para buscar el trabajo que tiene que cumplir.
-- FILE_NAME: Nombre del fichero que se a va a tratar.
+- FILE_NAME: Nombre del fichero que se va a tratar.
 
-Se tienen que seguir las siguintes reglas para que el sistema funcione sin problemas.
+Se tienen que seguir las siguientes reglas para que el sistema funcione sin problemas.
 
 1. Siempre se tiene que cumplir con el orden de inicio de los componentes.
-2. El numero identificador del mapper es único e incremental, de 0 a X.
+2. El número identificador del mapper es único e incremental, de 0 a X.
 
 ### Funcionamiento
 
-El sistema esta pensado para ser ejecutado en diferentes máquinas. Para ello se tiene que seguir lo siguintes pasos:
+El sistema esta pensado para ser ejecutado en diferentes máquinas. Para ello se tiene que seguir los siguientes pasos:
 
 1-  Iniciar el servidor HTTP en el directorio raíz del directorio parted **parted**
 
@@ -74,7 +74,7 @@ python -m SimpleHTTPServer
 2-  Iniciar el Registry
 
 ```
-python Resgitry.py IP_LOCAL_PC
+python Registry.py IP_LOCAL_PC
 ```
 
 3-  Iniciar el Reducer 
