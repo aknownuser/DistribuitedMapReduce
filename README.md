@@ -1,4 +1,4 @@
-# DistribuitedMapReduce
+# SequentialMapReduce
 
 Build by [Travis-ci](https://travis-ci.org):
 
