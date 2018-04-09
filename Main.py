@@ -38,8 +38,8 @@ if __name__ == "__main__":
               "the registry's IP and the local IP."
         quit()
 
-    subprocess.Popen(['nohup','/usr/bin/python','-m','SimpleHTTPServer'], stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
-
+    subprocess.Popen(['nohup','/usr/bin/python','-m','SimpleHTTPServer'],
+                     stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     set_context()
     address = 'http://' + sys.argv[3] + ':12345'
     host = create_host(address)
