@@ -1,0 +1,16 @@
+sudo: false
+
+language: python
+
+python:
+  - 2.7
+
+install:
+  - pip install codecov
+  - pip install pyactor
+
+script:
+  - python -m coverage run Main.py part-1
+
+after_success:
+- codecov -t e1505cf1-e35e-4e0b-9b0a-85be578a4c38

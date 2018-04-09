@@ -5,6 +5,11 @@ import os
 
 
 def word_count(f):
+    """
+    Word count sequential.
+    :param f: file to process
+    :return: frequencies
+    """
     word_dict = Counter()
     punc = ',.:;!?-_\'\"+=/*&^%$#@[]()'
     #  with will automatically close your file
@@ -12,18 +17,24 @@ def word_count(f):
         # iterate over each line
         for line in in_file:
             # pass each stripped word from the line to the Counter dict
-            #mapped_words =filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split()))
-            mapped_words = [val for val in [x_val.strip(punc).lower() for x_val in line.split()] if val != '']
+            mapped_words = [val for val in [x_val.strip(punc).lower() for x_val in line.split()]
+                            if val != '']
             word_dict.update(mapped_words)
     return word_dict
 
+
 def counting_word(file_name):
+    """
+    Counting word sequential.
+    :param file_name: file to be process.
+    :return: number of words.
+    """
     count = 0
     punc = ',.:;!?-_\'\"+=/*&^%$#@[]()'
-    with open(file_name) as file:
-        for line in file:
-            #count = count + len(filter(lambda x: x != '', map(lambda x: x.strip(punc).lower(), line.split())))
-            count = count + len([val for val in [x_val.strip(punc).lower() for x_val in line.split()] if val != ''])
+    with open(file_name) as file_name:
+        for line in file_name:
+            count = count + len([val for val in [x_val.strip(punc).lower() for x_val in line.split()]
+                                 if val != ''])
     return count
 
 
