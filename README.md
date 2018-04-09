@@ -4,10 +4,14 @@ Build by [Travis-ci](https://travis-ci.org):
 
 
 [![Build Status](https://travis-ci.org/OussamaElazizi/DistribuitedMapReduce.svg?branch=sequential)](https://travis-ci.org/OussamaElazizi/DistribuitedMapReduce)
+
 Code Coverage be [CodeCov](https://codecov.io):
 
 
-[![codecov](https://codecov.io/gh/OussamaElazizi/DistribuitedMapReduce/branch/master/graph/badge.svg?token=SFNfd9sqPP)](https://codecov.io/gh/OussamaElazizi/DistribuitedMapReduce)
+
+
+[![codecov](https://codecov.io/gh/OussamaElazizi/DistribuitedMapReduce/branch/sequential/graph/badge.svg)](https://codecov.io/gh/OussamaElazizi/DistribuitedMapReduce)
+
 
 
 CodeHealth by [Codacy](https://codacy.com): 
