@@ -29,13 +29,13 @@ Los componentes de la implementación son:
 - **Reducer.py**: Actor que controla el flujo, aplica la función del reduce por cada mapper que acaba
 y muestra el resultado por pantalla cuando acaba el último mapper.
 - **functionsMapRed.py**: Contiene todos los métodos de Map, Reduce, formato de resultado y obtención de ficheros del servidor HTTP.
-- **Main.py**: Programa principal que inicia la secuencia del proceso. 
+- **Main.py**: Programa principal que inicia la secuencia del proceso e inicia el servidor HTTP. 
 
 
-El proceso de tratameinto tiene el siguiente flujo, primero se inician todos los componentes del sistema siguiendo el orden
+El proceso de tratamiento tiene el siguiente flujo, primero se inician todos los componentes del sistema siguiendo el orden
 en la sección de **Funcionamiento**. El _Main.py_ es el que inicia la secuencia de tratamiento
 tal que, primero el main obtiene todos los mappers registrados y les hace _spawn_ y seguidamente empieza a partir 
-el fichero a tratar sobre el número de mappers creados. Finalmente se hace eligir la función de Map y se empieza la ejecución; cada Mapper
+el fichero a tratar sobre el número de mappers creados. Finalmente se hace elegir la función de Map y se empieza la ejecución; cada Mapper
 descarga el trozo de fichero que le pertenece de un servidor HTTP. 
    
 
@@ -47,9 +47,9 @@ El modelo implementado utiliza el middleware pyactor.
 pip install pyactor
 ```
 Puede encontrar más información en [Pyactor](https://github.com/pedrotgn/pyactor)
-### Terminología e uso
+### Terminología y uso
 
-Para poder explicar como se utiliza se tiene que definir un terminología:
+Para poder explicar como se utiliza se tiene que definir una terminología:
 
 - IP_LOCAL_PC: Dirección IP del ordenador que en un momento inicia un script.
 - IP_REGISTRY: Dirección IP del ordenador que corre el Registry.py.
@@ -63,33 +63,28 @@ Se tienen que seguir las siguientes reglas para que el sistema funcione sin prob
 
 ### Funcionamiento
 
-El sistema esta pensado para ser ejecutado en diferentes máquinas. Para ello se tiene que seguir los siguientes pasos:
+El sistema está pensado para ser ejecutado en diferentes máquinas. Para ello se tienen que seguir los siguientes pasos:
 
-1-  Iniciar el servidor HTTP en el directorio raíz del directorio parted **parted**
 
-```
-python -m SimpleHTTPServer
-```
-
-2-  Iniciar el Registry
+1-  Iniciar el Registry
 
 ```
 python Registry.py IP_LOCAL_PC
 ```
 
-3-  Iniciar el Reducer 
+2-  Iniciar el Reducer 
 
 ```
 python Reducer.py IP_REGISTRY IP_LOCAL_PC
 ```
 
-4-  Iniciar los Mappers
+3-  Iniciar los Mappers
 
 ```
 python Mapper.py WORKER_NUM IP_REGISTRY IP_LOCAL_PC
 ```
 
-5-  Iniciar Main
+4-  Iniciar Main
 
 ```
 python Main.py FILE_NAME IP_REGISTRY IP_LOCAL_PC

@@ -7,6 +7,7 @@ Authors: Amanda Gomez Gomez, Oussama El Azizi
 from pyactor.context import set_context, create_host, shutdown
 import functionsMapRed as fmr
 import sys
+import subprocess
 
 
 def split_file(file_name, num):
@@ -36,6 +37,8 @@ if __name__ == "__main__":
         print "Error, you should specify 3 parameters: the name of the file to process, " \
               "the registry's IP and the local IP."
         quit()
+
+    subprocess.Popen(['nohup','/usr/bin/python','-m','SimpleHTTPServer'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     set_context()
     address = 'http://' + sys.argv[3] + ':12345'

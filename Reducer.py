@@ -26,7 +26,7 @@ class Reduce(object):
 
     def set_mappers_num(self, mappers_num):
         """
-        Se the number of mappers initialized.
+        Set the number of mappers initialized.
         :param mappers_num: number of mappers
         :return:
         """

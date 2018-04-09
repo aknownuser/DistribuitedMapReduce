@@ -63,7 +63,7 @@ def outputFormat(data, func):
 
     :param data: result data
     :param func: function executed
-    :return:
+    :return: the string with the result in output format
     """
     if func.__name__ == 'word_count':
         return 'Results for word_count\n---------------------------\nFrequencies are:\n' + str(data)

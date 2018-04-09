@@ -18,7 +18,7 @@ import time
 class Outs(object):
 
     """
-    Class that controls the stdou.
+    Class that controls the stdout.
     """
     lines = []
 
