@@ -25,7 +25,7 @@ y tratarlas.
 
 ### Funcionamiento
 
-Inicias el main seguido de una listas de paths o nombres de ficheros que quieres tratar.
+Inicias el main seguido de una lista de paths o nombres de ficheros que quieres tratar.
 
 ```
 python Main.py FILE1 FILE2 FILE3 ... FILE_N
