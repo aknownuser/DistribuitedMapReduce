@@ -4,7 +4,7 @@ Main program that spawns the Mappers and initializes their execution.
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 
-from pyactor.context import set_context, create_host, shutdown, serve_forever
+from pyactor.context import set_context, create_host, serve_forever
 import functionsMapRed as fmr
 import sys
 import subprocess
