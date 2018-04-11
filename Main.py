@@ -4,7 +4,7 @@ Main program that spawns the Mappers and initializes their execution.
 Authors: Amanda Gomez Gomez, Oussama El Azizi
 """
 
-from pyactor.context import set_context, create_host, shutdown
+from pyactor.context import set_context, create_host, shutdown, serve_forever
 import functionsMapRed as fmr
 import sys
 import subprocess
@@ -76,4 +76,4 @@ if __name__ == "__main__":
         wor.map(i + 1, reducer, fmr.get_file_words, program)
         i = i + 1
 
-    shutdown()
+    serve_forever()
